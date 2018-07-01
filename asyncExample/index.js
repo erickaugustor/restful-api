@@ -50,10 +50,26 @@ getUser(1, user => {
 */
 
 // Promise
+/*
 getUserPromise(1)
   .then(user => getRepositoresPromise(user.gitHubUsername))
   .then(repos => console.log(repos))
+  .catch((err) => console.log('Error', err.message));
 ;
+*/
+
+// Async and Awaitapproach
+async function displayCommits() {
+  try {
+    const user = await getUserPromise(1);
+    const repos = await getRepositoresPromise(user.gitHubUsername);
+    console.log(repos);
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+displayCommits();
 
 console.log('After');
 
