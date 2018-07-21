@@ -44,6 +44,7 @@ async function listCourses() {
   console.log(courses);
 }
 
+
 async function addAuthor(courseId, author) {
   const course = await Course.findById(courseId);
   course.authors.push(author);
