@@ -6,6 +6,7 @@ describe('fizzBuzz', () => {
     expect(() => lilib.fizzBuzz(null)).toThrow();
     expect(() => lilib.fizzBuzz(NaN)).toThrow();
     expect(() => lilib.fizzBuzz({})).toThrow();
+    expect(() => lilib.fizzBuzz([])).toThrow();
   });
 
   it('should return FizzBuzz if input is divisible by 3 and 5', () => {
