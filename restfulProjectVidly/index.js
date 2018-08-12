@@ -22,13 +22,19 @@ const express = require('express');
 const app = express();
 
 process.on('uncaughtException', ex => {
-  console.log('WE GOT AN UNCAUGHT EXCEPTION');
   winston.err(ex.message, ex);
+  process.exit(1);
 });
 
+winston.handleExceptions(
+  new winston.transports.File({ 
+    filename: 'uncaugtExceptions.log' 
+  })
+);
+
 process.on('unhandledRejection', ex => {
-  console.log('WE GOT AN UNHANDLED REJECTION');
   winston.err(ex.message, ex);
+  process.exit(1);
 });
 
 winston.add(winston.transports.File, { filename: 'logfile.log' });
