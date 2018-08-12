@@ -1,3 +1,5 @@
+require('express-async-errors');
+
 const {Genre, validate} = require('../models/genre');
 const asyncMiddleware = require('../middleware/async');
 const auth = require('../middleware/auth');
@@ -6,10 +8,11 @@ const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', asyncMiddleware(async (req, res) => {
+// Async express module
+router.get('/', async (req, res) => {
   const genres = await Genre.find().sort('name');
   res.send(genres);
-}));
+});
 
 router.post('/', auth, asyncMiddleware(async (req, res) => {
 
